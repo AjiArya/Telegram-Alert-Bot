@@ -12,12 +12,26 @@ This is only a guide on how to deploy [alertmanager-bot](https://github.com/meta
   * Note the API Key
 
 ## Do below steps on OKD
-1. Create telebot.yaml (or download from [here]()
+1. Create telebot.yaml (or download from [here](https://raw.githubusercontent.com/AjiArya/Telegram-Alert-Bot/main/telebot.yaml)
 
-encode with base64 for userid and API key
+Encode with base64 for userid and API key
 
 ```bash
 echo -n "VALUE" | base64
+```
+
+Create telegram-bot project
+```bash
+oc new-project telegram-bot
+```
+
+Create or Download manifest
+```bash
+wget https://raw.githubusercontent.com/AjiArya/Telegram-Alert-Bot/main/telebot.yaml
+```
+
+```bash
+vim telebot.yaml
 ```
 
 ```yaml

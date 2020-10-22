@@ -13,6 +13,13 @@ This is only a guide on how to deploy [alertmanager-bot](https://github.com/meta
 
 ## Do below steps on OKD
 1. Create telebot.yaml
+
+encode with base64 for userid and API key
+
+```bash
+echo -n "VALUE" | base64
+```
+
 ```yaml
 apiVersion: v1
 kind: List

@@ -1,26 +1,3 @@
-# Telegram-Alert-Bot
-Send Alert from OpenShift Monitoring Stack to Telegram
-
-This is only a guide on how to deploy [alertmanager-bot](https://github.com/metalmatze/alertmanager-bot) on your OKD 4.5
-
-## Do below steps on Telegram
-1. Search @userinfobot
-  * Note your userid
-
-2. Search @BotFather
-  * Create New Bot
-  * Note the API Key
-
-## Do below steps on OKD
-1. Create telebot.yaml (or download from [here]()
-
-encode with base64 for userid and API key
-
-```bash
-echo -n "VALUE" | base64
-```
-
-```yaml
 apiVersion: v1
 kind: List
 items:
@@ -119,40 +96,3 @@ items:
     resources:
       requests:
         storage: 1Gi
-```
-
-```bash
-oc apply -f telebot.yaml
-
-oc expose svc alertmanager-bot
-```
-
-2. Edit alertmanager configuration
-```bash
-oc extract secret/alertmanager-main --to /tmp/ -n openshift-monitoring --confirm
-
-vim /tmp/alertmanager.yaml
-```
-
-```yaml
----output omitted---
-"receivers":
-- name: 'alertmanager-bot'
-  webhook_configs:
-  - send_resolved: true
-    url: 'http://alertmanager-bot-telegram-bot.apps.openshift.podX.io'
----output omitted---
-"route":
-  - match:
-      severity: warning
-    receiver: alertmanager-bot
-```
-
-```bash
-oc apply -f /tmp/alertmanager.yaml
-```
-
-## Do below steps on Telegram
-
-1. Search your bot
-2. Try to send some commands

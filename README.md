@@ -1,4 +1,4 @@
-# Telegram-Alert-Bot
+# Telegram Alert Bot OKD 4
 Send Alert from OpenShift Monitoring Stack to Telegram
 
 This is only a guide on how to deploy [alertmanager-bot](https://github.com/metalmatze/alertmanager-bot) on your OKD 4.5
